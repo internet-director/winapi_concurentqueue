@@ -14,6 +14,8 @@ struct queue {
     queue(size_t size) : queue(), MAX_SIZE(size) {}
 
     ~queue() {
+        ReleaseMutex(mutex);
+        CloseHandle(mutex);
         DeleteCriticalSection(&lock);
     }
 
